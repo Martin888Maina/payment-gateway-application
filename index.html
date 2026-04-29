@@ -585,6 +585,35 @@
   }
   .sol-link:hover { gap: 10px; }
 
+  /* ─── METRICS BAND ─── */
+  .metrics-band {
+    background: var(--ink-deep);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 64px 48px;
+  }
+  .metrics-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .metric {
+    padding: 24px 40px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .metric:last-child { border-right: none; }
+  .metric-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 800;
+    background: linear-gradient(90deg, var(--text), var(--accent));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.03em; line-height: 1;
+    margin-bottom: 10px;
+  }
+  .metric-label { font-size: 0.82rem; color: var(--muted); font-weight: 400; line-height: 1.5; }
+
 </style>
 </head>
 <body>
@@ -924,6 +953,28 @@
     </div>
   </div>
 </section>
+
+<!-- ─── METRICS BAND ─── -->
+<div class="metrics-band">
+  <div class="metrics-inner reveal">
+    <div class="metric">
+      <div class="metric-num">$42B+</div>
+      <div class="metric-label">Total transaction volume processed annually</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">500+</div>
+      <div class="metric-label">Enterprise clients across every major industry</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">180+</div>
+      <div class="metric-label">Countries with active payment coverage</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">99.99%</div>
+      <div class="metric-label">Platform uptime guaranteed by SLA</div>
+    </div>
+  </div>
+</div>
 
 <script>
   // ─── HAMBURGER / MOBILE DRAWER ───

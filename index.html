@@ -658,6 +658,47 @@
   }
   .testi-role { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
 
+  /* ─── CTA BANNER ─── */
+  .cta-banner-wrap {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .cta-banner {
+    background: linear-gradient(135deg, var(--surface) 0%, rgba(255,170,51,0.06) 100%);
+    border: 1px solid rgba(255,170,51,0.2);
+    border-radius: 24px;
+    padding: 72px 64px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-banner::before {
+    content: '';
+    position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 200px;
+    background: radial-gradient(ellipse, rgba(255,170,51,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 800; color: var(--text);
+    letter-spacing: -0.02em; margin-bottom: 16px;
+  }
+  .cta-banner p {
+    font-size: 1rem; color: var(--muted);
+    font-weight: 300; max-width: 480px;
+    margin: 0 auto 36px; line-height: 1.7;
+  }
+  .cta-actions {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; flex-wrap: wrap;
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
 </style>
 </head>
 <body>
@@ -1065,7 +1106,37 @@
   </div>
 </section>
 
+<!-- ─── CTA BANNER ─── -->
+<div class="cta-banner-wrap reveal">
+  <div class="cta-banner">
+    <h2>Ready to power your<br/>payment infrastructure?</h2>
+    <p>Join 500+ enterprises already processing with Payvex. Get started in minutes — no contracts, no hidden fees.</p>
+    <div class="cta-actions">
+      <a href="#" class="btn-hero">Start for free →</a>
+      <a href="#" class="btn-hero-ghost">Talk to sales ↗</a>
+    </div>
+  </div>
+</div>
+
 <script>
+  // ─── SCROLL REVEAL ───
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(r => observer.observe(r));
+
+  // ─── NAV SCROLL ───
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.background =
+      window.scrollY > 40 ? 'rgba(8,8,7,0.97)' : 'rgba(8,8,7,0.7)';
+  });
+
   // ─── HAMBURGER / MOBILE DRAWER ───
   const hamburger = document.getElementById('hamburger');
   const mobileDrawer = document.getElementById('mobileDrawer');

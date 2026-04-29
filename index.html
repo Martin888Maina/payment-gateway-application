@@ -301,6 +301,70 @@
   }
   .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
 
+  /* ─── DASHBOARD CARD ─── */
+  .hero-visual {
+    position: relative; z-index: 2;
+    margin-top: 72px; width: 100%;
+    display: flex; justify-content: center;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+  .dashboard-card {
+    width: min(700px, 90vw);
+    background: var(--surface);
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,170,51,0.05);
+    overflow: hidden;
+  }
+  .dashboard-topbar {
+    background: var(--surface-raised);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 20px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+  .topbar-label {
+    margin-left: 8px; font-size: 0.75rem; color: var(--muted); font-weight: 500;
+  }
+  .topbar-status {
+    margin-left: auto; display: flex; align-items: center; gap: 6px;
+    font-size: 0.72rem; color: var(--accent); font-weight: 600;
+  }
+  .topbar-status::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); animation: pulse 2s infinite;
+  }
+  .dash-body {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px; padding: 20px;
+  }
+  .dash-widget {
+    background: var(--ink); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 18px;
+  }
+  .dash-widget-label { font-size: 0.7rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+  .dash-val { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; color: var(--text); margin: 6px 0 4px; }
+  .dash-tag { font-size: 0.68rem; font-weight: 600; color: #28c840; }
+  .dash-chart { grid-column: span 3; }
+  .chart-bars {
+    display: flex; align-items: flex-end; gap: 6px;
+    height: 70px; padding: 0 4px;
+  }
+  .bar {
+    flex: 1; border-radius: 3px 3px 0 0;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--blue) 100%);
+    opacity: 0.7; transition: opacity 0.2s;
+    position: relative;
+  }
+  .bar:hover { opacity: 1; }
+  .b1  { height: 35%; } .b2  { height: 50%; } .b3  { height: 42%; }
+  .b4  { height: 65%; } .b5  { height: 55%; } .b6  { height: 78%; }
+  .b7  { height: 60%; } .b8  { height: 85%; } .b9  { height: 70%; }
+  .b10 { height: 90%; } .b11 { height: 75%; } .b12 { height: 100%; }
+
 </style>
 </head>
 <body>
@@ -340,7 +404,7 @@
   </div>
 </div>
 
-<!-- ─── HERO ─── -->
+<!-- ─── HERO + DASHBOARD ─── -->
 <div class="hero">
   <div class="hero-bg">
     <div class="blob blob-1"></div>
@@ -383,6 +447,52 @@
     <div class="stat-item">
       <div class="stat-num">500+</div>
       <div class="stat-label">Enterprise clients worldwide</div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="dashboard-card">
+      <div class="dashboard-topbar">
+        <span class="dot dot-r"></span>
+        <span class="dot dot-y"></span>
+        <span class="dot dot-g"></span>
+        <span class="topbar-label">Payvex Dashboard</span>
+        <span class="topbar-status">Live</span>
+      </div>
+      <div class="dash-body">
+        <div class="dash-widget">
+          <div class="dash-widget-label">Revenue MTD</div>
+          <div class="dash-val">$1.84M</div>
+          <div class="dash-tag">↑ 12.4% vs last month</div>
+        </div>
+        <div class="dash-widget">
+          <div class="dash-widget-label">Transactions</div>
+          <div class="dash-val">94,201</div>
+          <div class="dash-tag">↑ 8.1% vs last month</div>
+        </div>
+        <div class="dash-widget">
+          <div class="dash-widget-label">Success Rate</div>
+          <div class="dash-val">99.97%</div>
+          <div class="dash-tag">↑ 0.3% vs last month</div>
+        </div>
+        <div class="dash-widget dash-chart">
+          <div class="dash-widget-label" style="margin-bottom:12px;">Transaction Volume — Last 12 Months</div>
+          <div class="chart-bars">
+            <div class="bar b1"></div>
+            <div class="bar b2"></div>
+            <div class="bar b3"></div>
+            <div class="bar b4"></div>
+            <div class="bar b5"></div>
+            <div class="bar b6"></div>
+            <div class="bar b7"></div>
+            <div class="bar b8"></div>
+            <div class="bar b9"></div>
+            <div class="bar b10"></div>
+            <div class="bar b11"></div>
+            <div class="bar b12"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

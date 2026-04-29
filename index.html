@@ -536,6 +536,55 @@
     font-size: 0.72rem; font-weight: 600; color: var(--muted);
   }
 
+  /* ─── SOLUTIONS TABS ─── */
+  .solutions-wrap { margin-top: 56px; }
+  .tab-bar {
+    display: flex; gap: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 6px;
+    width: fit-content;
+    margin-bottom: 32px;
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 10px 24px; border-radius: 8px;
+    background: transparent; border: none;
+    color: var(--muted); font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.875rem; font-weight: 500;
+    cursor: pointer; white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+  }
+  .tab.active { background: var(--accent); color: var(--ink); font-weight: 700; }
+  .tab-content { display: none; }
+  .tab-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .sol-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    display: flex; flex-direction: column; gap: 12px;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .sol-card:hover { border-color: var(--border-bright); box-shadow: 0 12px 40px rgba(0,0,0,0.3); transform: translateY(-4px); }
+  .sol-tag {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .sol-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--text);
+  }
+  .sol-body { font-size: 0.875rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
+  .sol-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.82rem; font-weight: 600; color: var(--accent);
+    text-decoration: none; margin-top: 4px;
+    transition: gap 0.2s;
+  }
+  .sol-link:hover { gap: 10px; }
+
 </style>
 </head>
 <body>
@@ -789,6 +838,93 @@
   </div>
 </section>
 
+<!-- ─── SOLUTIONS TABS ─── -->
+<section id="solutions">
+  <p class="section-label">Solutions</p>
+  <h2 class="section-title">Built for every kind<br/>of financial business</h2>
+  <p class="section-sub">Whether you're a startup or a global enterprise, Payvex has a solution tailored to your needs.</p>
+  <div class="solutions-wrap reveal">
+    <div class="tab-bar">
+      <button class="tab active" onclick="switchTab(this,'fintechs')">Fintechs</button>
+      <button class="tab" onclick="switchTab(this,'enterprises')">Enterprises</button>
+      <button class="tab" onclick="switchTab(this,'platforms')">Platforms</button>
+      <button class="tab" onclick="switchTab(this,'banks')">Banks</button>
+    </div>
+    <!-- Fintechs -->
+    <div class="tab-content active" id="tab-fintechs">
+      <div class="sol-card">
+        <div class="sol-tag">Fintechs</div>
+        <div class="sol-title">Launch faster with flexible payment rails</div>
+        <p class="sol-body">Pre-built compliance, instant onboarding, and a sandbox environment so you can ship your product without waiting on banking partnerships.</p>
+        <a href="#" class="sol-link">Learn more →</a>
+      </div>
+      <div class="sol-card">
+        <div class="sol-tag">Fintechs</div>
+        <div class="sol-title">Multi-currency wallets & FX at interbank rates</div>
+        <p class="sol-body">Hold, convert, and send in 135+ currencies. Offer your users competitive FX rates while keeping your margins healthy.</p>
+        <a href="#" class="sol-link">Learn more →</a>
+      </div>
+      <div class="sol-card">
+        <div class="sol-tag">Fintechs</div>
+        <div class="sol-title">Card issuing in days, not months</div>
+        <p class="sol-body">Issue virtual and physical cards under your brand. Set spend controls, view transactions in real time, and manage everything via API.</p>
+        <a href="#" class="sol-link">Learn more →</a>
+      </div>
+      <div class="sol-card">
+        <div class="sol-tag">Fintechs</div>
+        <div class="sol-title">Built-in fraud prevention</div>
+        <p class="sol-body">Machine learning fraud scoring on every transaction. Customisable rules engine lets you define exactly what gets blocked or flagged.</p>
+        <a href="#" class="sol-link">Learn more →</a>
+      </div>
+    </div>
+    <!-- Enterprises -->
+    <div class="tab-content" id="tab-enterprises">
+      <div class="sol-card">
+        <div class="sol-tag">Enterprises</div>
+        <div class="sol-title">Global payment orchestration</div>
+        <p class="sol-body">Route transactions intelligently across multiple acquirers to maximise approval rates and minimise processing costs at enterprise scale.</p>
+        <a href="#" class="sol-link">Learn more →</a>
+      </div>
+      <div class="sol-card">
+        <div class="sol-tag">Enterprises</div>
+        <div class="sol-title">Dedicated infrastructure & SLAs</div>
+        <p class="sol-body">99.99% uptime SLA, dedicated support, and custom infrastructure options. We handle the reliability so your team can focus on growth.</p>
+        <a href="#" class="sol-link">Learn more →</a>
+      </div>
+    </div>
+    <!-- Platforms -->
+    <div class="tab-content" id="tab-platforms">
+      <div class="sol-card">
+        <div class="sol-tag">Platforms</div>
+        <div class="sol-title">Marketplace & split payments</div>
+        <p class="sol-body">Accept payments on behalf of sellers, split funds automatically, and manage payouts to thousands of recipients — all in one integration.</p>
+        <a href="#" class="sol-link">Learn more →</a>
+      </div>
+      <div class="sol-card">
+        <div class="sol-tag">Platforms</div>
+        <div class="sol-title">White-label financial products</div>
+        <p class="sol-body">Embed payments, wallets, and card issuing directly into your platform under your own brand — powered by Payvex infrastructure.</p>
+        <a href="#" class="sol-link">Learn more →</a>
+      </div>
+    </div>
+    <!-- Banks -->
+    <div class="tab-content" id="tab-banks">
+      <div class="sol-card">
+        <div class="sol-tag">Banks</div>
+        <div class="sol-title">Correspondent banking & Swift integration</div>
+        <p class="sol-body">Connect to global correspondent networks and Swift rails. Automate cross-border settlements and reduce reconciliation overhead.</p>
+        <a href="#" class="sol-link">Learn more →</a>
+      </div>
+      <div class="sol-card">
+        <div class="sol-tag">Banks</div>
+        <div class="sol-title">Core banking API layer</div>
+        <p class="sol-body">Modernise your payment stack without replacing your core. Our API layer sits between your existing systems and new digital channels.</p>
+        <a href="#" class="sol-link">Learn more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <script>
   // ─── HAMBURGER / MOBILE DRAWER ───
   const hamburger = document.getElementById('hamburger');
@@ -813,6 +949,14 @@
       closeDrawer();
     }
   });
+
+  // ─── TABS ───
+  function switchTab(btn, id) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+  }
 </script>
 
 </body>

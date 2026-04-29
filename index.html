@@ -106,6 +106,64 @@
   }
   .btn-primary:hover { box-shadow: 0 0 28px var(--accent-glow); transform: translateY(-1px); }
 
+  /* ─── HAMBURGER ─── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column; justify-content: center; gap: 5px;
+    width: 40px; height: 40px;
+    background: transparent; border: 1px solid var(--border-bright);
+    border-radius: 8px; cursor: pointer; padding: 8px;
+  }
+  .nav-hamburger span {
+    display: block; height: 1.5px; width: 100%;
+    background: var(--text); border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ─── MOBILE DRAWER ─── */
+  .mobile-drawer {
+    position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+    background: rgba(8,8,7,0.97);
+    backdrop-filter: blur(20px);
+    z-index: 850;
+    display: flex; flex-direction: column;
+    padding: 32px 24px 40px;
+    gap: 8px;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    border-top: 1px solid var(--border);
+    overflow-y: auto;
+  }
+  .mobile-drawer.open { transform: translateX(0); }
+  .mobile-drawer a {
+    display: block;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--text); text-decoration: none;
+    transition: color 0.2s, padding-left 0.2s;
+  }
+  .mobile-drawer a:hover { color: var(--accent); padding-left: 8px; }
+  .mobile-drawer .drawer-cta {
+    margin-top: 24px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .mobile-drawer .drawer-cta a {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 700;
+    padding: 14px 24px; text-align: center;
+    border-bottom: none;
+  }
+  .mobile-drawer .drawer-cta .btn-ghost { border-radius: 8px; }
+
+  @media (max-width: 900px) {
+    .nav-links, .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
+  }
+
 </style>
 </head>
 <body>
@@ -127,7 +185,49 @@
     <a href="#" class="btn-ghost">Sign in</a>
     <a href="#" class="btn-primary">Get started</a>
   </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- ─── MOBILE DRAWER ─── -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="#solutions" onclick="closeDrawer()">Solutions</a>
+  <a href="#features" onclick="closeDrawer()">Features</a>
+  <a href="#developers" onclick="closeDrawer()">Developers</a>
+  <a href="#pricing" onclick="closeDrawer()">Pricing</a>
+  <a href="#company" onclick="closeDrawer()">Company</a>
+  <div class="drawer-cta">
+    <a href="#" class="btn-ghost">Sign in</a>
+    <a href="#" class="btn-primary">Get started</a>
+  </div>
+</div>
+
+<script>
+  // ─── HAMBURGER / MOBILE DRAWER ───
+  const hamburger = document.getElementById('hamburger');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileDrawer.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  function closeDrawer() {
+    mobileDrawer.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', e => {
+    if (mobileDrawer.classList.contains('open') &&
+        !mobileDrawer.contains(e.target) &&
+        !hamburger.contains(e.target)) {
+      closeDrawer();
+    }
+  });
+</script>
 
 </body>
 </html>

@@ -491,6 +491,21 @@
     filter: brightness(0.9) saturate(1.1);
     display: block;
   }
+
+  /* ─── IMAGE LOADER ─── */
+  @keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .img-loading {
+    background: linear-gradient(90deg, var(--surface) 25%, var(--surface-raised) 50%, var(--surface) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s ease-in-out infinite;
+  }
+  .img-loading img { opacity: 0; transition: opacity 0.5s ease; }
+  .img-loading.loaded { background: none; animation: none; }
+  .img-loading.loaded img { opacity: 1; }
+
   .step-num {
     font-family: 'Fraunces', serif;
     font-size: 0.75rem; font-weight: 700;
@@ -1390,6 +1405,18 @@
     });
   }, { threshold: 0.5 });
   statNums.forEach(n => counterObserver.observe(n));
+
+  // ─── IMAGE LOADER ───
+  document.querySelectorAll('.feature-img-wrap img, .step-img img').forEach(img => {
+    const wrap = img.parentElement;
+    wrap.classList.add('img-loading');
+    if (img.complete && img.naturalWidth > 0) {
+      wrap.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => wrap.classList.add('loaded'));
+      img.addEventListener('error', () => wrap.classList.add('loaded'));
+    }
+  });
 
   // ─── TABS ───
   function switchTab(btn, id) {

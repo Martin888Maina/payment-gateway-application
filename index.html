@@ -365,6 +365,33 @@
   .b7  { height: 60%; } .b8  { height: 85%; } .b9  { height: 70%; }
   .b10 { height: 90%; } .b11 { height: 75%; } .b12 { height: 100%; }
 
+  /* ─── LOGO BAR ─── */
+  .logos-section {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--ink-deep);
+  }
+  .logos-label {
+    text-align: center; font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 20px;
+  }
+  .logos-track {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .logo-pill {
+    padding: 8px 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem; font-weight: 700;
+    color: var(--muted);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .logo-pill:hover { color: var(--text); border-color: var(--border-bright); }
+
 </style>
 </head>
 <body>
@@ -494,6 +521,21 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ─── LOGO BAR ─── -->
+<div class="logos-section">
+  <p class="logos-label">Trusted by leading companies worldwide</p>
+  <div class="logos-track">
+    <span class="logo-pill">Visa</span>
+    <span class="logo-pill">Mastercard</span>
+    <span class="logo-pill">Stripe Atlas</span>
+    <span class="logo-pill">ClearBank</span>
+    <span class="logo-pill">Nuvei</span>
+    <span class="logo-pill">Swift</span>
+    <span class="logo-pill">Revolut</span>
+    <span class="logo-pill">Wise</span>
   </div>
 </div>
 

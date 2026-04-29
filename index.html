@@ -164,6 +164,48 @@
     .nav-hamburger { display: flex; }
   }
 
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: var(--ink-deep);
+    background-image: url('meeting');
+    background-size: cover;
+    background-position: center;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(13,13,10,0.92) 0%, rgba(60,30,5,0.85) 50%, rgba(13,13,10,0.92) 100%);
+  }
+  .blob {
+    position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.18;
+    animation: breathe 8s ease-in-out infinite alternate;
+  }
+  .blob-1 { width: 700px; height: 500px; background: #ff9500; top: -120px; left: -200px; animation-delay: 0s; }
+  .blob-2 { width: 500px; height: 500px; background: #ffb347; top: 100px; right: -150px; animation-delay: 2s; }
+  .blob-3 { width: 400px; height: 400px; background: #cc6600; bottom: 0; left: 30%; animation-delay: 4s; }
+  @keyframes breathe {
+    from { transform: scale(1) translate(0,0); }
+    to   { transform: scale(1.12) translate(20px,-30px); }
+  }
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 1;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
 </style>
 </head>
 <body>
@@ -200,6 +242,18 @@
   <div class="drawer-cta">
     <a href="#" class="btn-ghost">Sign in</a>
     <a href="#" class="btn-primary">Get started</a>
+  </div>
+</div>
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="hero-content">
   </div>
 </div>
 

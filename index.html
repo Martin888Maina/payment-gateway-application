@@ -453,6 +453,89 @@
   }
   .feature-body { font-size: 0.875rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
 
+  /* ─── HOW IT WORKS ─── */
+  .hiw-wrapper {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    margin-top: 56px;
+  }
+  .hiw-steps { display: flex; flex-direction: column; }
+  .hiw-step {
+    display: flex; gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    transition: padding-left 0.2s;
+  }
+  .hiw-step:hover { padding-left: 8px; }
+  .hiw-step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--accent); min-width: 32px; padding-top: 3px;
+  }
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; color: var(--text);
+    margin-bottom: 6px;
+  }
+  .step-body { font-size: 0.85rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
+  .hiw-visual {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  .hiw-visual::after {
+    content: ''; position: absolute;
+    bottom: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: var(--accent-dim);
+    border-radius: 50%; filter: blur(60px);
+    z-index: -1;
+  }
+  .api-block {
+    background: var(--ink-deep);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem; line-height: 1.8;
+    margin-bottom: 16px;
+    overflow-x: auto;
+  }
+  .api-key  { color: var(--accent); }
+  .api-str  { color: #28c840; }
+  .api-num  { color: var(--gold); }
+  .api-obj  { color: var(--muted); }
+  .response-block {
+    background: rgba(255,170,51,0.06);
+    border: 1px solid rgba(255,170,51,0.15);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 20px;
+  }
+  .response-icon {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; color: var(--ink); font-weight: 700;
+    flex-shrink: 0;
+  }
+  .response-text { font-size: 0.82rem; color: var(--text); font-weight: 500; }
+  .response-text span { color: var(--muted); font-size: 0.75rem; display: block; margin-top: 2px; }
+  .sdk-badges {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .sdk-badge {
+    padding: 5px 12px; border-radius: 6px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    font-size: 0.72rem; font-weight: 600; color: var(--muted);
+  }
+
 </style>
 </head>
 <body>
@@ -635,6 +718,73 @@
       <div class="feature-icon fi-teal">🏦</div>
       <div class="feature-title">Banking as a Service</div>
       <p class="feature-body">Embed financial products directly into your platform — virtual IBANs, multi-currency wallets, card issuing, and direct debit — all through one integration.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section id="developers">
+  <p class="section-label">How It Works</p>
+  <h2 class="section-title">Integrate once.<br/>Scale everywhere.</h2>
+  <p class="section-sub">From sandbox to production in under a day. Our APIs are designed to get you live fast, with all the flexibility you need to grow.</p>
+  <div class="hiw-wrapper reveal">
+    <div class="hiw-steps">
+      <div class="hiw-step">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Create your account</div>
+          <p class="step-body">Sign up in minutes. Instant access to your sandbox environment with test credentials — no contracts, no waiting.</p>
+        </div>
+      </div>
+      <div class="hiw-step">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Integrate the API</div>
+          <p class="step-body">Drop in our SDK or call our REST API directly. Comprehensive docs, code samples, and a Postman collection get you to your first transaction fast.</p>
+        </div>
+      </div>
+      <div class="hiw-step">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Test in sandbox</div>
+          <p class="step-body">Simulate every payment scenario — successes, declines, disputes, refunds — before a single live transaction hits your system.</p>
+        </div>
+      </div>
+      <div class="hiw-step">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Go live & scale</div>
+          <p class="step-body">Flip to production with one config change. Our infrastructure scales automatically — from your first payment to your millionth.</p>
+        </div>
+      </div>
+    </div>
+    <div class="hiw-visual">
+      <div class="api-block">
+        <div><span class="api-obj">POST</span> <span class="api-str">/v1/payments</span></div>
+        <div><span class="api-obj">{</span></div>
+        <div>&nbsp;&nbsp;<span class="api-key">"amount"</span><span class="api-obj">:</span> <span class="api-num">4999</span><span class="api-obj">,</span></div>
+        <div>&nbsp;&nbsp;<span class="api-key">"currency"</span><span class="api-obj">:</span> <span class="api-str">"USD"</span><span class="api-obj">,</span></div>
+        <div>&nbsp;&nbsp;<span class="api-key">"payment_method"</span><span class="api-obj">:</span> <span class="api-str">"pm_card_visa"</span><span class="api-obj">,</span></div>
+        <div>&nbsp;&nbsp;<span class="api-key">"customer_id"</span><span class="api-obj">:</span> <span class="api-str">"cus_9xK2mP"</span></div>
+        <div><span class="api-obj">}</span></div>
+      </div>
+      <div class="response-block">
+        <div class="response-icon">✓</div>
+        <div class="response-text">
+          Payment authorised successfully
+          <span>200 OK · 187ms · txn_4Qw9rVmXpL2</span>
+        </div>
+      </div>
+      <div class="sdk-badges">
+        <span class="sdk-badge">Node.js</span>
+        <span class="sdk-badge">Python</span>
+        <span class="sdk-badge">PHP</span>
+        <span class="sdk-badge">Ruby</span>
+        <span class="sdk-badge">Go</span>
+        <span class="sdk-badge">Java</span>
+        <span class="sdk-badge">iOS</span>
+        <span class="sdk-badge">Android</span>
+      </div>
     </div>
   </div>
 </section>

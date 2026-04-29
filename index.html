@@ -872,19 +872,19 @@
 
   <div class="hero-stats">
     <div class="stat-item">
-      <div class="stat-num">$42B+</div>
+      <div class="stat-num" data-prefix="$" data-target="42" data-suffix="B+">$0B+</div>
       <div class="stat-label">Transaction volume per year</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">190+</div>
+      <div class="stat-num" data-target="190" data-suffix="+">0+</div>
       <div class="stat-label">Markets covered</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">99.99%</div>
+      <div class="stat-num" data-target="99.99" data-suffix="%" data-decimal="2">0%</div>
       <div class="stat-label">Service availability guarantee</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">500+</div>
+      <div class="stat-num" data-target="500" data-suffix="+">0+</div>
       <div class="stat-label">Enterprise clients worldwide</div>
     </div>
   </div>
@@ -1325,6 +1325,32 @@
       closeDrawer();
     }
   });
+
+  // ─── STAT COUNTERS ───
+  const statNums = document.querySelectorAll('.stat-num[data-target]');
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseFloat(el.dataset.target);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const decimals = parseInt(el.dataset.decimal || '0');
+      const duration = 2000;
+      const steps = 60;
+      const increment = target / steps;
+      let current = 0;
+      let step = 0;
+      const timer = setInterval(() => {
+        step++;
+        current = step === steps ? target : Math.min(current + increment, target);
+        el.textContent = prefix + current.toFixed(decimals) + suffix;
+        if (step >= steps) clearInterval(timer);
+      }, duration / steps);
+      counterObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  statNums.forEach(n => counterObserver.observe(n));
 
   // ─── TABS ───
   function switchTab(btn, id) {

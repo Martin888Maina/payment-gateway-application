@@ -1148,19 +1148,19 @@
 <div class="metrics-band">
   <div class="metrics-inner reveal">
     <div class="metric">
-      <div class="metric-num">$42B+</div>
+      <div class="metric-num" data-prefix="$" data-target="42" data-suffix="B+">$0B+</div>
       <div class="metric-label">Total transaction volume processed annually</div>
     </div>
     <div class="metric">
-      <div class="metric-num">500+</div>
+      <div class="metric-num" data-target="500" data-suffix="+">0+</div>
       <div class="metric-label">Enterprise clients across every major industry</div>
     </div>
     <div class="metric">
-      <div class="metric-num">180+</div>
+      <div class="metric-num" data-target="180" data-suffix="+">0+</div>
       <div class="metric-label">Countries with active payment coverage</div>
     </div>
     <div class="metric">
-      <div class="metric-num">99.99%</div>
+      <div class="metric-num" data-target="99.99" data-suffix="%" data-decimal="2">0%</div>
       <div class="metric-label">Platform uptime guaranteed by SLA</div>
     </div>
   </div>
@@ -1327,7 +1327,7 @@
   });
 
   // ─── STAT COUNTERS ───
-  const statNums = document.querySelectorAll('.stat-num[data-target]');
+  const statNums = document.querySelectorAll('.stat-num[data-target], .metric-num[data-target]');
   const counterObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
